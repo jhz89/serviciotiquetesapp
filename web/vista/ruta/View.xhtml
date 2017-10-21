@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RutaViewDlg" widgetVar="RutaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewRutaTitle}">
+            <h:form id="RutaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{rutaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewRutaLabel_idruta}"/>
+                        <h:outputText value="#{rutaController.selected.idruta}" title="#{bundle.ViewRutaTitle_idruta}"/>
+                        <h:outputText value="#{bundle.ViewRutaLabel_destino}"/>
+                        <h:outputText value="#{rutaController.selected.destino}" title="#{bundle.ViewRutaTitle_destino}"/>
+                        <h:outputText value="#{bundle.ViewRutaLabel_fechasalida}"/>
+                        <h:outputText value="#{rutaController.selected.fechasalida}" title="#{bundle.ViewRutaTitle_fechasalida}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewRutaLabel_valor}"/>
+                        <h:outputText value="#{rutaController.selected.valor}" title="#{bundle.ViewRutaTitle_valor}"/>
+                        <h:outputText value="#{bundle.ViewRutaLabel_cantidadasientos}"/>
+                        <h:outputText value="#{rutaController.selected.cantidadasientos}" title="#{bundle.ViewRutaTitle_cantidadasientos}"/>
+                        <h:outputText value="#{bundle.ViewRutaLabel_origen}"/>
+                        <h:outputText value="#{rutaController.selected.origen}" title="#{bundle.ViewRutaTitle_origen}"/>
+                        <h:outputText value="#{bundle.ViewRutaLabel_idUsuario}"/>
+                        <h:outputText value="#{rutaController.selected.idUsuario}" title="#{bundle.ViewRutaTitle_idUsuario}"/>
+                        <h:outputText value="#{bundle.ViewRutaLabel_placavehiculo}"/>
+                        <h:outputText value="#{rutaController.selected.placavehiculo}" title="#{bundle.ViewRutaTitle_placavehiculo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="RutaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TiqueteViewDlg" widgetVar="TiqueteViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTiqueteTitle}">
+            <h:form id="TiqueteViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tiqueteController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTiqueteLabel_idtiquete}"/>
+                        <h:outputText value="#{tiqueteController.selected.idtiquete}" title="#{bundle.ViewTiqueteTitle_idtiquete}"/>
+                        <h:outputText value="#{bundle.ViewTiqueteLabel_fechareserva}"/>
+                        <h:outputText value="#{tiqueteController.selected.fechareserva}" title="#{bundle.ViewTiqueteTitle_fechareserva}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTiqueteLabel_fechaCompra}"/>
+                        <h:outputText value="#{tiqueteController.selected.fechaCompra}" title="#{bundle.ViewTiqueteTitle_fechaCompra}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTiqueteLabel_idruta}"/>
+                        <h:outputText value="#{tiqueteController.selected.idruta}" title="#{bundle.ViewTiqueteTitle_idruta}"/>
+                        <h:outputText value="#{bundle.ViewTiqueteLabel_idUsuario}"/>
+                        <h:outputText value="#{tiqueteController.selected.idUsuario}" title="#{bundle.ViewTiqueteTitle_idUsuario}"/>
+                        <h:outputText value="#{bundle.ViewTiqueteLabel_idviajero}"/>
+                        <h:outputText value="#{tiqueteController.selected.idviajero}" title="#{bundle.ViewTiqueteTitle_idviajero}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TiqueteViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

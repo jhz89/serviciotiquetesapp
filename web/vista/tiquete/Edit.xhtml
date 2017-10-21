@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TiqueteEditDlg" widgetVar="TiqueteEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTiqueteTitle}">
+            <h:form id="TiqueteEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tiqueteController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTiqueteLabel_idtiquete}" for="idtiquete" />
+                        <p:inputText id="idtiquete" value="#{tiqueteController.selected.idtiquete}" title="#{bundle.EditTiqueteTitle_idtiquete}" required="true" requiredMessage="#{bundle.EditTiqueteRequiredMessage_idtiquete}"/>
+                        <p:outputLabel value="#{bundle.EditTiqueteLabel_fechareserva}" for="fechareserva" />
+                        <p:calendar id="fechareserva" pattern="MM/dd/yyyy HH:mm:ss" value="#{tiqueteController.selected.fechareserva}" title="#{bundle.EditTiqueteTitle_fechareserva}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditTiqueteLabel_fechaCompra}" for="fechaCompra" />
+                        <p:calendar id="fechaCompra" pattern="MM/dd/yyyy HH:mm:ss" value="#{tiqueteController.selected.fechaCompra}" title="#{bundle.EditTiqueteTitle_fechaCompra}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditTiqueteLabel_idruta}" for="idruta" />
+                        <p:selectOneMenu id="idruta" value="#{tiqueteController.selected.idruta}" required="true" requiredMessage="#{bundle.EditTiqueteRequiredMessage_idruta}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{rutaController.itemsAvailableSelectOne}"
+                                           var="idrutaItem"
+                                           itemValue="#{idrutaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTiqueteLabel_idUsuario}" for="idUsuario" />
+                        <p:selectOneMenu id="idUsuario" value="#{tiqueteController.selected.idUsuario}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="idUsuarioItem"
+                                           itemValue="#{idUsuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTiqueteLabel_idviajero}" for="idviajero" />
+                        <p:selectOneMenu id="idviajero" value="#{tiqueteController.selected.idviajero}" required="true" requiredMessage="#{bundle.EditTiqueteRequiredMessage_idviajero}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{viajeroController.itemsAvailableSelectOne}"
+                                           var="idviajeroItem"
+                                           itemValue="#{idviajeroItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tiqueteController.update}" value="#{bundle.Save}" update="display,:TiqueteListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TiqueteEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TiqueteEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
